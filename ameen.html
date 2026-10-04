@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أهلاً مروة ومحمد إحسان ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: Tahoma, Arial, sans-serif;
+  color: white;
+  background: linear-gradient(135deg, #180b2d, #722b63, #d65b85);
+}
+
+.card {
+  width: 90%;
+  max-width: 520px;
+  padding: 40px 25px;
+  text-align: center;
+  border: 1px solid #ffffff50;
+  border-radius: 28px;
+  background: #ffffff18;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 15px 50px #0003;
+  position: relative;
+  z-index: 2;
+  animation: appear 1.2s ease;
+}
+
+.heart {
+  font-size: 65px;
+  animation: beat 1s infinite;
+}
+
+h1 {
+  font-size: clamp(25px, 6vw, 38px);
+  margin: 15px 0;
+}
+
+.names {
+  color: #ffe3ed;
+  line-height: 1.9;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+p {
+  line-height: 2;
+  font-size: 17px;
+}
+
+button {
+  border: none;
+  border-radius: 50px;
+  padding: 14px 25px;
+  margin: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button:hover {
+  transform: scale(1.07);
+}
+
+.main-btn {
+  background: #fff;
+  color: #a02e69;
+}
+
+.second-btn {
+  background: #ff7eae;
+  color: white;
+}
+
+#message {
+  margin-top: 18px;
+  font-size: 19px;
+  color: #fff2b5;
+  min-height: 55px;
+  line-height: 1.9;
+}
+
+.floating {
+  position: fixed;
+  bottom: -50px;
+  font-size: 24px;
+  animation: floatUp linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.18); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-115vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="heart">💖</div>
+
+  <h1>أهلاً وسهلاً بكم!</h1>
+
+  <div class="names">
+    🌸 مروة 🌸<br>
+    ✨ محمد إحسان ✨
+  </div>
+
+  <p>
+    نورتوا المكان بوجودكم الجميل ❤️<br>
+    أتمنى لكم أياماً مليئة بالسعادة والفرح
+    والضحكات التي لا تنتهي.
+  </p>
+
+  <button class="main-btn" onclick="showMessage()">
+    💌 اضغطوا للمفاجأة
+  </button>
+
+  <button class="second-btn" onclick="celebrate()">
+    🎉 احتفال!
+  </button>
+
+  <div id="message" aria-live="polite"></div>
+</div>
+
+<script>
+const messages = [
+  "مروة ومحمد إحسان، وجودكم يجعل الحياة أجمل ❤️",
+  "أتمنى أن تبقى الابتسامة رفيقة دربكم دائماً 🌷",
+  "أنتم تستحقون كل الفرح والخير في الدنيا 💕",
+  "أجمل التحيات وأطيب الأمنيات لكم من القلب 🥰"
+];
+
+let index = 0;
+
+function showMessage() {
+  document.getElementById("message").textContent =
+    messages[index % messages.length];
+  index++;
+  createHearts(12);
+}
+
+function createHearts(count) {
+  const symbols = ["❤️", "💖", "💕", "🌸", "✨", "💗"];
+
+  for (let i = 0; i < count; i++) {
+    const item = document.createElement("span");
+    item.className = "floating";
+    item.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration = (3 + Math.random() * 4) + "s";
+    item.style.fontSize = (18 + Math.random() * 25) + "px";
+
+    document.body.appendChild(item);
+    setTimeout(() => item.remove(), 7500);
+  }
+}
+
+function celebrate() {
+  createHearts(45);
+  document.getElementById("message").textContent =
+    "🎊 يا مرحباً بمروة ومحمد إحسان! 🎊";
+}
+
+setInterval(() => createHearts(1), 900);
+</script>
+
+</body>
+</html>
